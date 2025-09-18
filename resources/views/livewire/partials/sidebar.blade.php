@@ -20,7 +20,7 @@
                         <li class="nav-item"> <a class="nav-link" href="{{ route('products.index') }}"
                                 wire:navigate>Product List</a>
                         </li>
-                        <li class="nav-item"> <a class="nav-link" href="{{ route('products.post') }}" wire:navigate>Add
+                        <li class="nav-item"> <a class="nav-link" href="{{ route('products.create') }}" wire:navigate>Add
                                 Product</a>
                         </li>
                         <li class="nav-item"> <a class="nav-link" href="#">Update Product</a></li>
