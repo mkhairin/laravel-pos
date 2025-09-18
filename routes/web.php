@@ -5,8 +5,8 @@ use App\Livewire\Dashboard;
 
 // Product
 use App\Livewire\Products\Index as ProductIndex;
-use App\Livewire\Products\Insert as ProductPost;
 use App\Livewire\Products\Create as ProductCreate;
+use App\Livewire\Products\Update as ProductUpdate;
 
 Route::get('/', function () {
     return view('welcome');
@@ -14,5 +14,6 @@ Route::get('/', function () {
 
 Route::get('/dashboard', Dashboard::class)->name('dashboard');
 
-Route::get('/product/list', ProductIndex::class)->name('products.index');
-Route::get('/product/insert', ProductCreate::class)->name('products.create');
+Route::get('/products/list', ProductIndex::class)->name('products.index');
+Route::get('/products/insert', ProductCreate::class)->name('products.create');
+Route::get('/products/edit/{id}', ProductUpdate::class)->name('products.edit');

@@ -33,10 +33,10 @@
                                 <th>#ID</th>
                                 <th>Product Name</th>
                                 <th>Image</th>
-                                <th>Description</th>
+                                {{-- <th>Description</th> --}}
                                 <th>Price</th>
                                 <th>Stock</th>
-                                <th>Status</th>
+                                <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -45,11 +45,18 @@
                                 <tr>
                                     <td>{{ $i++ }}</td>
                                     <td>{{ $data_products->name }}</td>
-                                    <td>12 May 2017</td>
-                                    <td>Test</td>
+                                    <td><img src="{{ $data_products->image_url }}" class="img-fluid  rounded-0"
+                                            alt="Product Image" height="300px" width="300px"></td>
+                                    {{-- <td>{{ $data_products->description }}</td> --}}
                                     <td>{{ $data_products->price }}</td>
                                     <td>{{ $data_products->stock }}</td>
-                                    <td><label class="badge badge-danger">Pending</label></td>
+                                    <td>
+                                        <a class="btn btn-info btn-sm"
+                                            href="{{ route('products.edit', $data_products->id) }}" role="button"><i
+                                                class="bi bi-pencil-square"></i></a>
+                                        <a class="btn btn-inverse-info btn-sm" href="#" role="button"><i
+                                                class="bi bi-trash-fill"></i></a>
+                                    </td>
                                 </tr>
                             @endforeach
                         </tbody>

@@ -2,8 +2,8 @@
     <div class="col-12 grid-margin">
         <div class="card">
             <div class="card-body">
-                <h4 class="card-title">Horizontal Two column</h4>
-                <form class="form-sample" wire:submit="save">
+                <h4 class="card-title">Form Update</h4>
+                <form class="form-sample" wire:submit.prevent="update">
                     <p class="card-description">
                         Product Information
                     </p>
@@ -87,7 +87,9 @@
                             </div>
                         </div>
                     </div>
-                    <button type="submit" class="btn btn-info me-2">Submit</button>
+                    <button type="submit" class="btn btn-info me-2">Submit <div wire:loading>
+                            <i class="fa fa-circle-o-notch"></i>
+                        </div> </button>
                     <a class="btn btn-light" href="{{ route('products.index') }}" role="button"
                         wire:navigate>Cancel</a>
                 </form>

@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->string('invoice_number')->unique();
-            $table->decimal('total_amount', 15, 2);
+            $table->integer('total_amount');
             $table->enum('status', ['pending', 'paid', 'failed', 'shipped', 'completed'])->default('pending');
             $table->timestamps();
         });

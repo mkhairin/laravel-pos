@@ -6,8 +6,9 @@ use Livewire\Component;
 use Livewire\Attributes\Title;
 use App\Models\Product as ProductModel;
 
-class Create extends Component
+class Update extends Component
 {
+    public ProductModel $product;
     public $name;
     public $description;
     public $price;
@@ -25,26 +26,36 @@ class Create extends Component
         ];
     }
 
-    public function save()
+    public function mount($id)
+    {
+        $this->product = ProductModel::findOrFail($id);
+
+        $this->name = $this->product->name;
+        $this->description = $this->product->description;
+        $this->price = $this->product->price;
+        $this->stock = $this->product->stock;
+        $this->image_url = $this->product->image_url;
+    }
+
+    public function update()
     {
         $this->validate();
 
-        ProductModel::create([
+        $this->product->update([
             'name' => $this->name,
             'description' => $this->description,
             'price' => $this->price,
             'stock' => $this->stock,
-            'image_url' => $this->image_url,
+            'image_url' => $this->image_url
         ]);
 
-        session()->flash('status', 'Product successfully added...');
+        session()->flash('status', 'Product successfully updated...');
         $this->redirectRoute('products.index');
     }
 
-
-    #[Title('Product Form')]
+    #[Title('Product Form Update')]
     public function render()
     {
-        return view('livewire.products.create');
+        return view('livewire.products.update');
     }
 }
