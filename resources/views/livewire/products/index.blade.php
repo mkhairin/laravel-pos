@@ -25,16 +25,18 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>Makanan</td>
-                                <td>12 May 2017</td>
-                                <td>Test</td>
-                                <td>100.000</td>
-                                <td>10</td>
-                                <td><label class="badge badge-danger">Pending</label></td>
-                            </tr>
-
+                            <?php $i = 1; ?>
+                            @foreach ($products as $data_products)
+                                <tr>
+                                    <td>{{ $i++ }}</td>
+                                    <td>{{ $data_products->name }}</td>
+                                    <td>12 May 2017</td>
+                                    <td>Test</td>
+                                    <td>{{ $data_products->price }}</td>
+                                    <td>{{ $data_products->stock }}</td>
+                                    <td><label class="badge badge-danger">Pending</label></td>
+                                </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
