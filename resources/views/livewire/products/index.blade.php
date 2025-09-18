@@ -1,12 +1,27 @@
 <div>
-    <div class="col-lg-12 grid-margin stretch-card">
+    <div class="col-lg-12 grid-margin stretch-card d-flex flex-column">
         <div class="card">
             <div class="card-body">
                 <h4 class="card-title">Basic Table</h4>
+
+
                 <div class="d-flex justify-content-between mb-3">
-                    <p class="card-description">
+                    <div class="d-flex card-description">
                         Add class <code>.table</code>
-                    </p>
+                        {{-- Kode ini akan aktif untuk URL seperti /product/list, /product/create, /product/1/edit, dll. --}}
+                        {{-- @if (request()->is('product*'))
+                            <i class="mdi mdi-home text-muted hover-cursor"></i>
+                            <p class="text-muted mb-0 hover-cursor ms-2">&nbsp;/&nbsp;Product&nbsp;/&nbsp;</p> --}}
+
+                        {{-- Anda bahkan bisa menambahkan logika untuk bagian terakhir --}}
+                        {{-- @if (request()->is('product/list'))
+                                <p class="text-primary mb-0 hover-cursor">List</p>
+                            @elseif(request()->is('product/create'))
+                                <p class="text-primary mb-0 hover-cursor">Create</p>
+                            @endif --}}
+                        {{-- @endif --}}
+                    </div>
+
                     <a class="btn btn-info" href="{{ route('products.create') }}" role="button" wire:navigate><i
                             class="fa fa-plus"></i>Add
                         Product</a>

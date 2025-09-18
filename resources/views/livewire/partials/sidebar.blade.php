@@ -4,7 +4,7 @@
         <ul class="nav">
             <li class="nav-item">
                 <a class="nav-link" href="{{ route('dashboard') }}">
-                    <i class="mdi mdi-home menu-icon"></i>
+                    <i class="fa fa-home menu-icon"></i>
                     <span class="menu-title">Dashboard</span>
                 </a>
             </li>
@@ -20,7 +20,8 @@
                         <li class="nav-item"> <a class="nav-link" href="{{ route('products.index') }}"
                                 wire:navigate>Product List</a>
                         </li>
-                        <li class="nav-item"> <a class="nav-link" href="{{ route('products.create') }}" wire:navigate>Add
+                        <li class="nav-item"> <a class="nav-link" href="{{ route('products.create') }}"
+                                wire:navigate>Add
                                 Product</a>
                         </li>
                         <li class="nav-item"> <a class="nav-link" href="#">Update Product</a></li>
@@ -79,13 +80,13 @@
                 </div>
             </li>
             <li class="nav-item">
-                <a class="nav-link" data-bs-toggle="collapse" href="#user-menu" aria-expanded="false"
-                    aria-controls="user-menu">
+                <a class="nav-link" data-bs-toggle="collapse" href="#settings-menu" aria-expanded="false"
+                    aria-controls="settings-menu">
                     <i class="fa fa-cog menu-icon" aria-hidden="true"></i>
                     <span class="menu-title">Settings</span>
                     <i class="menu-arrow"></i>
                 </a>
-                <div class="collapse" id="user-menu">
+                <div class="collapse" id="settings-menu">
                     <ul class="nav flex-column sub-menu">
                         <li class="nav-item"> <a class="nav-link" href="#" wire:navigate>User List</a>
                         </li>
