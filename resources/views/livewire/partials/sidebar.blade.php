@@ -37,10 +37,10 @@
                 </a>
                 <div class="collapse" id="transaction-menu">
                     <ul class="nav flex-column sub-menu">
-                        <li class="nav-item"> <a class="nav-link" href="#" wire:navigate>Transaction List</a>
+                        <li class="nav-item"> <a class="nav-link" href="{{ route('transactions.index') }}" wire:navigate>Transaction List</a>
                         </li>
                         <li class="nav-item"> <a class="nav-link" href="#" wire:navigate>Add
-                                Role</a>
+                                Transaction</a>
                         </li>
                     </ul>
                 </div>
