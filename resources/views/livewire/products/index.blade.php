@@ -44,7 +44,9 @@
                             @foreach ($products as $data_products)
                                 <tr>
                                     <td>{{ $i++ }}</td>
-                                    <td>{{ $data_products->name }}</td>
+                                    <td>{{ $data_products->name }} <button type="button" class="btn btn-link"
+                                            wire:click="$dispatch('showProductDetailModal', { productId: {{ $data_products->id }} })">Link</button>
+                                    </td>
                                     <td><img src="{{ $data_products->image_url }}" class="img-fluid  rounded-0"
                                             alt="Product Image" height="300px" width="300px"></td>
                                     {{-- <td>{{ $data_products->description }}</td> --}}
@@ -61,6 +63,7 @@
                             @endforeach
                         </tbody>
                     </table>
+                    @livewire('products.product-detail-modal')
                 </div>
             </div>
         </div>
