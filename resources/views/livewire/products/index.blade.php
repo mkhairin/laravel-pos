@@ -56,8 +56,10 @@
                                         <a class="btn btn-info btn-sm"
                                             href="{{ route('products.edit', $data_products->id) }}" role="button"><i
                                                 class="bi bi-pencil-square"></i></a>
-                                        <a class="btn btn-inverse-info btn-sm" href="#" role="button"><i
-                                                class="bi bi-trash-fill"></i></a>
+                                        <button type="button" class="btn btn-inverse-info btn-sm"
+                                            wire:click="destroy({{ $data_products->id }})"
+                                            wire:confirm="Are you sure you want to delete this product?"><i
+                                                class="bi bi-trash-fill"></i></button>
                                     </td>
                                 </tr>
                             @endforeach
