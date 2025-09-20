@@ -37,7 +37,8 @@
                 </a>
                 <div class="collapse" id="transaction-menu">
                     <ul class="nav flex-column sub-menu">
-                        <li class="nav-item"> <a class="nav-link" href="{{ route('transactions.index') }}" wire:navigate>Transaction List</a>
+                        <li class="nav-item"> <a class="nav-link" href="{{ route('transactions.index') }}"
+                                wire:navigate>Transaction List</a>
                         </li>
                         <li class="nav-item"> <a class="nav-link" href="#" wire:navigate>Add
                                 Transaction</a>
@@ -48,7 +49,7 @@
             <li class="nav-item">
                 <a class="nav-link" data-bs-toggle="collapse" href="#report-menu" aria-expanded="false"
                     aria-controls="report-menu">
-                    <i class="fa fa-bar-chart menu-icon"></i>
+                    <i class="bi bi-graph-up menu-icon"></i>
                     <span class="menu-title">Report</span>
                     <i class="menu-arrow"></i>
                 </a>

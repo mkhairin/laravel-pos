@@ -9,7 +9,6 @@
                     <div class="d-flex card-description">
                         Add class <code>.table</code>
                     </div>
-
                     <a class="btn btn-info" href="#" role="button" wire:navigate><i class="fa fa-plus"></i>Add
                         Transaction</a>
                 </div>
@@ -17,7 +16,8 @@
                     <table class="table table-bordered">
                         <thead>
                             <tr>
-                                <th>#No Invoice</th>
+                                <th>#</th>
+                                <th>No Invoice</th>
                                 <th>Date</th>
                                 <th>Customer/Cashier</th>
                                 <th>Total Amount</th>
@@ -29,6 +29,7 @@
                             <?php $i = 1; ?>
 
                             <tr>
+                                <td>{{ $i++ }}</td>
                                 <td>#</td>
                                 <td>#
                                 </td>

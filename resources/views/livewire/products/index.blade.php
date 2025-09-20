@@ -1,5 +1,10 @@
 <div>
     <div class="col-lg-12 grid-margin stretch-card d-flex flex-column">
+        @if (session('status'))
+            <div class="alert alert-success" role="alert">
+              <i class="bi bi-info-circle-fill"></i>  {{ session('status') }}
+            </div>
+        @endif
         <div class="card">
             <div class="card-body">
                 <h4 class="card-title">Basic Table</h4>
@@ -47,10 +52,10 @@
                                     <td>{{ $data_products->name }} <button type="button" class="btn btn-link"
                                             wire:click="$dispatch('showProductDetailModal', { productId: {{ $data_products->id }} })">Link</button>
                                     </td>
-                                    <td><img src="{{ $data_products->image_url }}" class="img-fluid  rounded-0"
-                                            alt="Product Image" height="300px" width="300px"></td>
+                                    <td><img src="{{ $data_products->image_url }}" class="img-fluid rounded-0"
+                                            alt="Product Image" width="30%"></td>
                                     {{-- <td>{{ $data_products->description }}</td> --}}
-                                    <td>{{ $data_products->price }}</td>
+                                    <td>Rp. {{ $data_products->price }}</td>
                                     <td>{{ $data_products->stock }}</td>
                                     <td>
                                         <a class="btn btn-info btn-sm"
