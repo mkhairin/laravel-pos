@@ -10,6 +10,7 @@ use App\Livewire\Products\Update as ProductUpdate;
 
 // Transaction
 use App\Livewire\Transactions\Index as TransactionIndex;
+use App\Livewire\Transactions\Create as TransactionCreate;
 
 Route::get('/', function () {
     return view('welcome');
@@ -22,3 +23,4 @@ Route::get('/products/insert', ProductCreate::class)->name('products.create');
 Route::get('/products/edit/{id}', ProductUpdate::class)->name('products.edit');
 
 Route::get('/transaction/list', TransactionIndex::class)->name('transactions.index');
+Route::get('/transaction/create', TransactionCreate::class)->name('transactions.create');
