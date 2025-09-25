@@ -29,15 +29,23 @@ class Create extends Component
     {
         $this->validate();
 
-        ProductModel::create([
-            'name' => $this->name,
-            'description' => $this->description,
-            'price' => $this->price,
-            'stock' => $this->stock,
-            'image_url' => $this->image_url,
-        ]);
+        try {
+            ProductModel::create([
+                'name' => $this->name,
+                'description' => $this->description,
+                'price' => $this->price,
+                'stock' => $this->stock,
+                'image_url' => $this->image_url,
+            ]);
 
-        session()->flash('status', 'Product successfully added...');
+            session()->flash('success', 'Product successfully added!');
+        } catch (\Exception $error) {
+
+            session()->flash('error', 'Product failed to add!');
+            // (Opsional) Anda bisa mencatat errornya untuk debugging
+            // \Log::error('Error creating product: ' . $error->getMessage());
+        }
+
         $this->redirectRoute('products.index');
     }
 

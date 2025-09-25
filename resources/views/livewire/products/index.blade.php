@@ -1,31 +1,39 @@
 <div>
     <div class="col-lg-12 grid-margin stretch-card d-flex flex-column">
-        @if (session('status'))
+        
+        @if (session()->has('success'))
             <div class="alert alert-success" role="alert">
-              <i class="bi bi-info-circle-fill"></i>  {{ session('status') }}
+                <i class="bi bi-info-circle-fill"></i> {{ session('success') }}
             </div>
         @endif
+        @if (session()->has('error'))
+            <div class="alert alert-danger" role="alert">
+                <i class="bi bi-info-circle-fill"></i> {{ session('error') }}
+            </div>
+        @endif
+
+        <div class="container-search d-flex justify-content-end">
+            <ul class="navbar-nav me-lg-4 w-50 mb-3">
+                <li class="nav-item nav-search d-none d-lg-block w-100">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="search">
+                                <i class="mdi mdi-magnify"></i>
+                            </span>
+                        </div>
+                        <input type="text" class="form-control" placeholder="Search now" aria-label="search"
+                            aria-describedby="search">
+                    </div>
+                </li>
+            </ul>
+        </div>
         <div class="card">
             <div class="card-body">
                 <h4 class="card-title">Basic Table</h4>
 
 
-                <div class="d-flex justify-content-between mb-3">
-                    <div class="d-flex card-description">
-                        Add class <code>.table</code>
-                        {{-- Kode ini akan aktif untuk URL seperti /product/list, /product/create, /product/1/edit, dll. --}}
-                        {{-- @if (request()->is('product*'))
-                            <i class="mdi mdi-home text-muted hover-cursor"></i>
-                            <p class="text-muted mb-0 hover-cursor ms-2">&nbsp;/&nbsp;Product&nbsp;/&nbsp;</p> --}}
 
-                        {{-- Anda bahkan bisa menambahkan logika untuk bagian terakhir --}}
-                        {{-- @if (request()->is('product/list'))
-                                <p class="text-primary mb-0 hover-cursor">List</p>
-                            @elseif(request()->is('product/create'))
-                                <p class="text-primary mb-0 hover-cursor">Create</p>
-                            @endif --}}
-                        {{-- @endif --}}
-                    </div>
+                <div class="d-flex justify-content-between mb-3">
 
                     <a class="btn btn-info" href="{{ route('products.create') }}" role="button" wire:navigate><i
                             class="fa fa-plus"></i>Add

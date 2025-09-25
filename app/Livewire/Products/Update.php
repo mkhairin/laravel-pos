@@ -41,15 +41,22 @@ class Update extends Component
     {
         $this->validate();
 
-        $this->product->update([
-            'name' => $this->name,
-            'description' => $this->description,
-            'price' => $this->price,
-            'stock' => $this->stock,
-            'image_url' => $this->image_url
-        ]);
+        try {
+            $this->product->update([
+                'name' => $this->name,
+                'description' => $this->description,
+                'price' => $this->price,
+                'stock' => $this->stock,
+                'image_url' => $this->image_url
+            ]);
 
-        session()->flash('status', 'Product successfully updated...');
+            session()->flash('success', 'Product successfully updated!');
+        } catch (\Exception $error) {
+
+            // \Log::error('Error creating product: ' . $error->getMessage())
+            session()->flash('error', 'Product failed to update!');
+        }
+
         $this->redirectRoute('products.index');
     }
 

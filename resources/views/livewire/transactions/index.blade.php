@@ -7,7 +7,7 @@
 
                 <div class="d-flex justify-content-between mb-3">
                     <div class="d-flex card-description">
-                        Add class <code>.table</code>
+                        {{-- Add class <code>.table</code> --}}
                     </div>
                     <a class="btn btn-info" href="#" role="button" wire:navigate><i class="fa fa-plus"></i>Add
                         Transaction</a>
@@ -30,13 +30,12 @@
 
                             <tr>
                                 <td>{{ $i++ }}</td>
-                                <td>#</td>
-                                <td>#
+                                <td>INV-10209022</td>
+                                <td>21/09/2025
                                 </td>
-                                <td>#</td>
-                                {{-- <td>{{ $data_products->description }}</td> --}}
-                                <td>#</td>
-                                <td>#</td>
+                                <td>Khairin</td>
+                                <td>Rp. 1000000</td>
+                                <td>Completed</td>
                                 <td>
                                     <a class="btn btn-info btn-sm" href="#" role="button"><i
                                             class="bi bi-pencil-square"></i></a>
