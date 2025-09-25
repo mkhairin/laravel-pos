@@ -28,7 +28,7 @@ class Create extends Component
 
         // Cek stok sebelum menambahkan ke keranjang
         if ($product->stock <= 0) {
-            session()->flash('error', 'Stock produck habis!');
+            session()->flash('error', 'Stock product habis!');
             return;
         }
 
@@ -38,7 +38,7 @@ class Create extends Component
         } else {
             // Jika belum ada, tambahkan sebagai item baru
             $this->cart[$productId] = [
-                'id' => $product->id,
+                'product_id' => $product->id,
                 'name' => $product->name,
                 'price' => $product->price,
                 'quantity' => 1,
@@ -46,16 +46,19 @@ class Create extends Component
         }
 
         $this->calculateTotal();
+
+        session()->flash('success', 'Product berhasil ditambahkan ke keranjang!');
     }
 
     // Menghapus item dari keranjang
     public function removeFromCart($productId)
     {
         unset($this->cart[$productId]);
+        $this->calculateTotal();
     }
 
     // Menghitung total harga di keranjang
-    private function calculateTotal()
+    public function calculateTotal()
     {
         $this->total = collect($this->cart)->sum(function ($item) {
             return $item['price'] * $item['quantity'];
@@ -78,7 +81,7 @@ class Create extends Component
             DB::transaction(function () {
                 // 3. Buat "Kepala" Struk (Simpan ke tabel transactions)
                 $transaction = Transaction::create([
-                    'user_id' => auth()->id(),
+                    'user_id' => 1,
                     'invoice_number' => 'INV-' . date('Ymd-His'),
                     'total_amount' => $this->total,
                     'status' => 'paid'
@@ -86,7 +89,7 @@ class Create extends Component
 
                 // 4. Loop setiap item di keranjang untuk disimpan dan diupdate
                 foreach ($this->cart as $item) {
-                    $product = Product::find($item['product_id']);
+                    $product = Product::find($item['id']);
 
                     // Validasi stok di dalam transaksi untuk mencegah race condition
                     if ($product->stock < $item['quantity']) {
@@ -108,7 +111,7 @@ class Create extends Component
             // 5. Beri Respon Sukses dan Reset Keranjang
             session()->flash('success', 'Transaksi berhasil diproses!');
             $this->reset(['cart', 'total']);
-            $this->mount(); // Muat ulang data produk
+            // $this->mount(); // Muat ulang data produk
         } catch (\Exception $e) {
             session()->flash('error', $e->getMessage());
         }
@@ -117,6 +120,6 @@ class Create extends Component
     #[Title('Transaction')]
     public function render()
     {
-        return view('livewire.transactions.create');
+        return view('livewire.transactions.create', ['cart' => $this->cart]);
     }
 }
