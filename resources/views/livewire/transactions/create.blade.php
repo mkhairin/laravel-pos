@@ -15,7 +15,8 @@
             @endif
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title border-bottom"><i class="bi bi-list-ul"></i> Product List</h4>
+                    <h4 class="card-title"><i class="bi bi-list-ul"></i> Product List</h4>
+                    <hr class="text-secondary">
                     <div class="container-product">
                         <div class="row row-cols-1 row-cols-sm-3 row-cols-md-2 g-4">
                             @forelse ($allProducts as $product)
@@ -65,14 +66,15 @@
         <div class="col-lg-4 grid-margin stretch-card d-flex flex-column">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title border-bottom">Cart Item</h4>
-
+                    <h4 class="card-title">Cart Item</h4>
+                    <hr class="text-secondary">
                     <div class="container-cart-item">
                         @for ($i = 1; $i < 5; $i++)
                             <div class="product-card mb-3 border-bottom">
                                 <div class="product-info d-flex">
                                     <img src="https://i.pinimg.com/736x/48/54/12/4854120d438d747dc42423154ae8c5c2.jpg"
-                                        class="img-fluid rounded" alt="Product Name" width="100px">
+                                        class="img-fluid rounded border mb-3" alt="Product Name" width="100px"
+                                        height="120px">
                                     <div class="product-info2 my-auto ms-3 mb-3 d-flex flex-column">
                                         <h5 class="fw-bold">
                                             Product name
@@ -110,7 +112,8 @@
                     </div>
 
                     <div class="process-transactions d-grid">
-                        <button type="button" class="btn btn-info">Transaction Process</button>
+                        <button type="button" class="btn btn-info"><i class="bi bi-cart-fill"></i> Transaction
+                            Process</button>
                     </div>
                 </div>
             </div>
