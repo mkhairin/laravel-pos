@@ -40,7 +40,7 @@
                         <li class="nav-item"> <a class="nav-link" href="{{ route('transactions.index') }}"
                                 wire:navigate>Transaction List</a>
                         </li>
-                        <li class="nav-item"> <a class="nav-link" href="#" wire:navigate>Add
+                        <li class="nav-item"> <a class="nav-link" href="{{ route('transactions.create') }}" wire:navigate>Add
                                 Transaction</a>
                         </li>
                     </ul>
