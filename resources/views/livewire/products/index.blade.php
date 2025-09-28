@@ -1,6 +1,6 @@
 <div>
     <div class="col-lg-12 grid-margin stretch-card d-flex flex-column">
-        
+
         @if (session()->has('success'))
             <div class="alert alert-success" role="alert">
                 <i class="bi bi-info-circle-fill"></i> {{ session('success') }}
@@ -63,7 +63,7 @@
                                     <td><img src="{{ $data_products->image_url }}" class="img-fluid rounded-0"
                                             alt="Product Image" width="30%"></td>
                                     {{-- <td>{{ $data_products->description }}</td> --}}
-                                    <td>Rp. {{ $data_products->price }}</td>
+                                    <td>Rp. {{ number_format($data_products->price) }}</td>
                                     <td>{{ $data_products->stock }}</td>
                                     <td>
                                         <a class="btn btn-info btn-sm"

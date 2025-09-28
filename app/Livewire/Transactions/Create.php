@@ -28,7 +28,7 @@ class Create extends Component
 
         // Cek stok sebelum menambahkan ke keranjang
         if ($product->stock <= 0) {
-            session()->flash('error', 'Stock product habis!');
+            session()->flash('error', 'Stock product is out of stock!');
             return;
         }
 
@@ -48,12 +48,39 @@ class Create extends Component
 
         $this->calculateTotal();
 
-        session()->flash('success', 'Product berhasil ditambahkan ke keranjang!');
+        session()->flash('success', 'Product successfully added to cart!');
     }
 
-    public function addButtonCartQuantity($productId) {
+    // fungsi button tambah quantity
+    public function addButtonCartQuantity($productId)
+    {
         $product = Product::find($productId);
-        
+
+        if ($product->stock <= 0) {
+            session()->flash('error', 'Stock product is out of stock!');
+            return;
+        }
+
+        if (isset($this->cart[$productId])) {
+            // Jika produk sudah ada di cart, tambah kuantitasnya
+            $this->cart[$productId]['quantity']++;
+        }
+    }
+
+    // fungsi button delete quantity
+    public function deletedButtonCartQuantity($productId)
+    {
+        $product = Product::find($productId);
+
+        if ($product->stock <= 0) {
+            session()->flash('error', 'Stock product is out of stock!');
+            return;
+        }
+
+        if (isset($this->cart[$productId])) {
+            // Jika produk sudah ada di cart, tambah kuantitasnya
+            $this->cart[$productId]['quantity']--;
+        }
     }
 
     // Menghapus item dari keranjang
@@ -61,6 +88,8 @@ class Create extends Component
     {
         unset($this->cart[$productId]);
         $this->calculateTotal();
+
+        session()->flash('success', 'Item successfully deleted!');
     }
 
     // Menghitung total harga di keranjang
@@ -78,7 +107,7 @@ class Create extends Component
     {
         // 1. Validasi: pastikan keranjang tidak kosong
         if (empty($this->cart)) {
-            session()->flash('error', 'Keranjang belanja kosong!');
+            session()->flash('error', 'Empty shopping cart!');
             return;
         }
 
@@ -115,7 +144,7 @@ class Create extends Component
             });
 
             // 5. Beri Respon Sukses dan Reset Keranjang
-            session()->flash('success', 'Transaksi berhasil diproses!');
+            session()->flash('success', 'Transaction successfully processed!');
             $this->reset(['cart', 'total']);
             // $this->mount(); // Muat ulang data produk
         } catch (\Exception $e) {

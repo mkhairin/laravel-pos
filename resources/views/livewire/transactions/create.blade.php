@@ -92,9 +92,11 @@
                                         </div>
                                         <div
                                             class="card-btn-cart d-flex flex-row align-items-center justify-content-around mt-4">
-                                            <button type="button" class="btn btn-info btn-sm">+</button>
+                                            <button type="button" class="btn btn-info btn-sm"
+                                                wire:click="addButtonCartQuantity({{ $productId }})">+</button>
                                             <h5 class="mx-3">{{ $item['quantity'] }}</h5>
-                                            <button type="button" class="btn btn-inverse-info btn-sm me-2">-</button>
+                                            <button type="button" class="btn btn-inverse-info btn-sm me-2"
+                                                wire:click="deletedButtonCartQuantity({{ $productId }})">-</button>
 
                                             <small><button type="button" class="btn btn-inverse-danger btn-sm"
                                                     wire:click="removeFromCart({{ $productId }})">Delete</button></small>
