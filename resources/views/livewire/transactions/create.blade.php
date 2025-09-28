@@ -112,7 +112,7 @@
 
                     <div class="total-amount d-flex justify-content-between mt-3 mb-5">
                         <h4>Total Amount: </h4>
-                        <p class="text-muted">Rp. {{ $total }}</p>
+                        <p class="text-muted">Rp. {{ number_format($total) }}</p>
                     </div>
 
                     <div class="process-transactions d-grid">

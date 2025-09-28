@@ -40,10 +40,10 @@ class Create extends Component
 
             session()->flash('success', 'Product successfully added!');
         } catch (\Exception $error) {
-
-            session()->flash('error', 'Product failed to add!');
             // (Opsional) Anda bisa mencatat errornya untuk debugging
+            session()->flash('error', $error->getMessage());
             // \Log::error('Error creating product: ' . $error->getMessage());
+            session()->flash('error', 'Product failed to add!');
         }
 
         $this->redirectRoute('products.index');
