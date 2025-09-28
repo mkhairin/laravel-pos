@@ -19,6 +19,9 @@ class Create extends Component
     public function mount()
     {
         $this->allProducts = Product::where('stock', '>', 0)->orderBy('name')->get();
+        // Ambil data 'cart' dari session. Jika tidak ada, gunakan array kosong [].
+        $this->cart = session('cart', []);
+        $this->calculateTotal(); // Hitung total berdasarkan cart dari session
     }
 
     // Menambahkan produk ke keranjang
@@ -47,6 +50,8 @@ class Create extends Component
         }
 
         $this->calculateTotal();
+        // Simpan versi terbaru dari $cart ke dalam session
+        session(['cart' => $this->cart]);
 
         session()->flash('success', 'Product successfully added to cart!');
     }
@@ -88,6 +93,9 @@ class Create extends Component
     {
         unset($this->cart[$productId]);
         $this->calculateTotal();
+
+        // Simpan versi terbaru dari $cart ke dalam session
+        session(['cart' => $this->cart]);
 
         session()->flash('success', 'Item successfully deleted!');
     }
@@ -146,6 +154,8 @@ class Create extends Component
             // 5. Beri Respon Sukses dan Reset Keranjang
             session()->flash('success', 'Transaction successfully processed!');
             $this->reset(['cart', 'total']);
+            // 4. KOSONGKAN JUGA SESSION SETELAH TRANSAKSI BERHASIL
+            session()->forget('cart');
             // $this->mount(); // Muat ulang data produk
         } catch (\Exception $e) {
             session()->flash('error', $e->getMessage());
