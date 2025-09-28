@@ -16,7 +16,7 @@
             <div class="card">
                 <div class="card-body">
                     <h4 class="card-title"><i class="bi bi-list-ul"></i> Product List</h4>
-                    <hr class="text-secondary">
+                    <hr class="text-body-tertiary">
                     <div class="container-product">
                         <div class="row row-cols-1 row-cols-sm-3 row-cols-md-2 g-4">
                             @forelse ($allProducts as $product)
@@ -35,7 +35,7 @@
                                                                 class="bi bi-currency-dollar text-info"></i></small>
                                                         Price
                                                     </small>
-                                                    <p class="mt-2">Rp.100.000</p>
+                                                    <p class="mt-2">Rp.{{ number_format($product->price) }}</p>
                                                 </div>
                                                 <div class="card-stock">
                                                     <small class="text-muted">
@@ -67,52 +67,56 @@
             <div class="card">
                 <div class="card-body">
                     <h4 class="card-title">Cart Item</h4>
-                    <hr class="text-secondary">
+                    <hr class="text-body-tertiary">
                     <div class="container-cart-item">
-                        @for ($i = 1; $i < 5; $i++)
+                        @forelse ($cart as $productId => $item)
                             <div class="product-card mb-3 border-bottom">
                                 <div class="product-info d-flex">
-                                    <img src="https://i.pinimg.com/736x/48/54/12/4854120d438d747dc42423154ae8c5c2.jpg"
-                                        class="img-fluid rounded border mb-3" alt="Product Name" width="100px"
-                                        height="120px">
+                                    <img src="{{ $item['image_url'] }}" class="img-fluid rounded border mb-3"
+                                        alt="Product Name" width="100px" height="120px">
                                     <div class="product-info2 my-auto ms-3 mb-3 d-flex flex-column">
                                         <h5 class="fw-bold">
-                                            Product name
+                                            {{ $item['name'] }}
                                         </h5>
                                         <div class="info-list-price d-flex flex-row justify-content-between">
                                             <div class="card-price me-2">
                                                 <small class="text-muted">
-                                                    Price: Rp.100.000
+                                                    Price: Rp {{ number_format($item['price'] * $item['quantity']) }}
                                                 </small>
                                             </div>
                                             <div class="card-stock">
                                                 <small class="text-muted">
-                                                    Qnty: 1
+                                                    Qnty: {{ $item['quantity'] }}
                                                 </small>
                                             </div>
                                         </div>
                                         <div
                                             class="card-btn-cart d-flex flex-row align-items-center justify-content-around mt-4">
                                             <button type="button" class="btn btn-info btn-sm">+</button>
-                                            <h5 class="mx-3">100</h5>
+                                            <h5 class="mx-3">{{ $item['quantity'] }}</h5>
                                             <button type="button" class="btn btn-inverse-info btn-sm me-2">-</button>
 
-                                            <small><button type="button"
-                                                    class="btn btn-inverse-danger btn-sm">Delete</button></small>
+                                            <small><button type="button" class="btn btn-inverse-danger btn-sm"
+                                                    wire:click="removeFromCart({{ $productId }})">Delete</button></small>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        @endfor
+                            @empty
+                                <p class="text-center">
+                                    Cart Empty
+                                </p>
+                        @endforelse
                     </div>
 
                     <div class="total-amount d-flex justify-content-between mt-3 mb-5">
                         <h4>Total Amount: </h4>
-                        <p class="text-muted">Rp.200000000</p>
+                        <p class="text-muted">Rp. {{ $total }}</p>
                     </div>
 
                     <div class="process-transactions d-grid">
-                        <button type="button" class="btn btn-info"><i class="bi bi-cart-fill"></i> Transaction
+                        <button type="button" class="btn btn-info" wire:click="processTransaction"
+                            @if (empty($cart)) disabled @endif><i class="bi bi-cart-fill"></i>
+                            Transaction
                             Process</button>
                     </div>
                 </div>

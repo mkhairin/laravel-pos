@@ -42,12 +42,18 @@ class Create extends Component
                 'name' => $product->name,
                 'price' => $product->price,
                 'quantity' => 1,
+                'image_url' => $product->image_url
             ];
         }
 
         $this->calculateTotal();
 
         session()->flash('success', 'Product berhasil ditambahkan ke keranjang!');
+    }
+
+    public function addButtonCartQuantity($productId) {
+        $product = Product::find($productId);
+        
     }
 
     // Menghapus item dari keranjang
