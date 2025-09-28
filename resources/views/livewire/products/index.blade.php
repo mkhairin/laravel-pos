@@ -63,8 +63,8 @@
                                     <td><img src="{{ $data_products->image_url }}" class="img-fluid rounded-0"
                                             alt="Product Image" width="30%"></td>
                                     {{-- <td>{{ $data_products->description }}</td> --}}
-                                    <td>Rp. {{ number_format($data_products->price) }}</td>
-                                    <td>{{ $data_products->stock }}</td>
+                                    <td class="text-muted">Rp. {{ number_format($data_products->price) }}</td>
+                                    <td>{{ $data_products->stock }} pcs</td>
                                     <td>
                                         <a class="btn btn-info btn-sm"
                                             href="{{ route('products.edit', $data_products->id) }}" role="button"><i
