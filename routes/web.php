@@ -6,6 +6,7 @@ use App\Livewire\Dashboard;
 // Auth
 use App\Livewire\Auth\Login;
 use App\Livewire\Auth\Register;
+use App\Livewire\Auth\Logout;
 
 // Product
 use App\Livewire\Products\Index as ProductIndex;
@@ -27,6 +28,9 @@ Route::middleware('guest')->group(function () {
 
 
 Route::middleware('auth')->group(function () {
+    // Tombol Logout hanya akan memanggil method, jadi bisa GET atau POST sederhana
+    Route::post('/logout', Logout::class)->name('logout');
+
     Route::get('/dashboard', Dashboard::class)->name('dashboard');
 
     Route::get('/products/list', ProductIndex::class)->name('products.index');

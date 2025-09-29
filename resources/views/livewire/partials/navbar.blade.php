@@ -141,10 +141,12 @@
                             <i class="mdi mdi-cog text-info"></i>
                             Settings
                         </a>
-                        <a class="dropdown-item">
+                        {{-- Ini komponen untuk logout --}}
+                        <livewire:auth.logout />
+                        {{-- <a class="dropdown-item" role="button" wire:click="logout">
                             <i class="mdi mdi-logout text-info"></i>
                             Logout
-                        </a>
+                        </a> --}}
                     </div>
                 </li>
                 <li class="nav-item nav-settings d-none d-lg-flex">
