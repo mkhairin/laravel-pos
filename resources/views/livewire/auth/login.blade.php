@@ -6,22 +6,36 @@
                     <div class="col-lg-4 mx-auto">
                         <div class="auth-form-light text-left py-5 px-4 px-sm-5">
                             <div class="brand-logo">
-                                <img src="../../assets/images/logo.svg" alt="logo">
+                                <img src="{{ asset('/assets/images/logo.svg') }}" alt="logo">
                             </div>
                             <h4>Hello! let's get started</h4>
                             <h6 class="font-weight-light">Sign in to continue.</h6>
-                            <form class="pt-3">
+                            <form class="pt-3" wire:submit="login">
                                 <div class="form-group">
-                                    <input type="email" class="form-control form-control-lg" id="exampleInputEmail1"
-                                        placeholder="Username">
+                                    <input type="text" class="form-control form-control-lg" placeholder="Username"
+                                        wire:model="email">
+                                    <small>
+                                        <div class="text-danger mt-1">
+                                            @error('email')
+                                                <i class="fa fa-exclamation-circle"></i>
+                                                {{ $message }}
+                                            @enderror
+                                        </div>
+                                    </small>
                                 </div>
                                 <div class="form-group">
-                                    <input type="password" class="form-control form-control-lg"
-                                        id="exampleInputPassword1" placeholder="Password">
+                                    <input type="password" class="form-control form-control-lg" placeholder="Password"
+                                        wire:model="password">
+                                    <div class="text-danger mt-1">
+                                        @error('password')
+                                            <i class="fa fa-exclamation-circle"></i>
+                                            {{ $message }}
+                                        @enderror
+                                    </div>
                                 </div>
                                 <div class="mt-3 d-grid gap-2">
-                                    <a class="btn btn-block btn-info btn-lg font-weight-medium auth-form-btn"
-                                        href="#">SIGN IN</a>
+                                    <button class="btn btn-block btn-info btn-lg font-weight-medium auth-form-btn"
+                                        type="submit">SIGN IN</button>
                                 </div>
                                 <div class="my-2 d-flex justify-content-between align-items-center">
                                     <div class="form-check">
@@ -32,13 +46,14 @@
                                     </div>
                                     <a href="#" class="auth-link text-black">Forgot password?</a>
                                 </div>
-                                <div class="mb-2 d-grid gap-2">
+                                {{-- <div class="mb-2 d-grid gap-2">
                                     <button type="button" class="btn btn-block btn-facebook auth-form-btn">
                                         <i class="mdi mdi-facebook me-2"></i>Connect using facebook
                                     </button>
-                                </div>
+                                </div> --}}
                                 <div class="text-center mt-4 font-weight-light">
-                                    Don't have an account? <a href="register.html" class="text-info">Create</a>
+                                    Don't have an account? <a href="{{ route('register') }}"
+                                        class="text-info">Create</a>
                                 </div>
                             </form>
                         </div>

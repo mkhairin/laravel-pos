@@ -3,6 +3,7 @@
 namespace App\Livewire\Auth;
 
 use Illuminate\Support\Facades\Auth;
+use Livewire\Attributes\Title;
 use Livewire\Component;
 
 class Login extends Component
@@ -31,9 +32,10 @@ class Login extends Component
         }
 
         // Tampilkan pesan error jika gagal login
-          $this->addError('email', 'Kredensial yang diberikan tidak cocok dengan data kami.');
+        $this->addError('email', 'Kredensial yang diberikan tidak cocok dengan data kami.');
     }
 
+    #[Title('Login Auth')]
     public function render()
     {
         return view('livewire.auth.login');

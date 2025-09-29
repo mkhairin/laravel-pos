@@ -129,16 +129,20 @@
                 <li class="nav-item nav-profile dropdown">
                     <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"
                         id="profileDropdown">
-                        <img src="../../../assets/images/faces/face5.jpg" alt="profile" />
-                        <span class="nav-profile-name">Louis Barnett</span>
+                        <img src="{{ asset('/assets/images/faces/face5.jpg') }} " alt="profile" />
+                        @if (Auth::check())
+                            <span class="nav-profile-name">{{ Auth::user()->name }}</span>
+                        @else
+                            <span class="nav-profile-name">Undifined User</span>
+                        @endif
                     </a>
                     <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
                         <a class="dropdown-item">
-                            <i class="mdi mdi-cog text-primary"></i>
+                            <i class="mdi mdi-cog text-info"></i>
                             Settings
                         </a>
                         <a class="dropdown-item">
-                            <i class="mdi mdi-logout text-primary"></i>
+                            <i class="mdi mdi-logout text-info"></i>
                             Logout
                         </a>
                     </div>
