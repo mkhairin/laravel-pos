@@ -29,16 +29,23 @@ class Register extends Component
     {
         $this->validate();
 
-        $user = UserModel::create([
-            'name' => $this->name,
-            'email' => $this->email,
-            'password' => Hash::make($this->password)
-        ]);
+        try {
+            $user = UserModel::create([
+                'name' => $this->name,
+                'email' => $this->email,
+                'password' => Hash::make($this->password)
+            ]);
 
-        // Login pengguna secara otomatis setelah register
-        Auth::login($user);
+            session()->flash('success', 'User successfully created!');
+            // Login pengguna secara otomatis setelah register
+            Auth::login($user);
 
-        return redirect('/dashboard');
+            return redirect('/dashboard');
+        } catch (\Exception $error) {
+            // (Opsional) Anda bisa mencatat errornya untuk debugging
+            session()->flash('error', $error->getMessage());
+            session()->flash('error', 'User failed to create!');
+        }
     }
 
     #[Title('Register')]

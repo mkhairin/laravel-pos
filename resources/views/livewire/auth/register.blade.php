@@ -1,5 +1,15 @@
 <div>
     <div class="container-scroller">
+        @if (session()->has('success'))
+            <div class="alert alert-success" role="alert">
+                <i class="bi bi-info-circle-fill"></i> {{ session('success') }}
+            </div>
+        @endif
+        @if (session()->has('error'))
+            <div class="alert alert-danger" role="alert">
+                <i class="bi bi-info-circle-fill"></i> {{ session('error') }}
+            </div>
+        @endif
         <div class="container-fluid page-body-wrapper full-page-wrapper">
             <div class="content-wrapper d-flex align-items-center auth px-0">
                 <div class="row w-100 mx-0">
