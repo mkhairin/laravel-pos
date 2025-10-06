@@ -8,6 +8,7 @@ use App\Models\Product;
 use App\Models\Transaction;
 use App\Models\TransactionDetail;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class Create extends Component
 {
@@ -28,6 +29,12 @@ class Create extends Component
     public function addToCart($productId)
     {
         $product = Product::find($productId);
+
+        if (!$product) {
+            // Jika produk tidak ditemukan, hentikan proses
+            session()->flash('error', 'Produk tidak ditemukan!');
+            return;
+        }
 
         // Cek stok sebelum menambahkan ke keranjang
         if ($product->stock <= 0) {
@@ -61,6 +68,12 @@ class Create extends Component
     {
         $product = Product::find($productId);
 
+        if (!$product) {
+            // Jika produk tidak ditemukan, hentikan proses
+            session()->flash('error', 'Produk tidak ditemukan!');
+            return;
+        }
+
         if ($product->stock <= 0) {
             session()->flash('error', 'Stock product is out of stock!');
             return;
@@ -69,6 +82,8 @@ class Create extends Component
         if (isset($this->cart[$productId])) {
             // Jika produk sudah ada di cart, tambah kuantitasnya
             $this->cart[$productId]['quantity']++;
+            $this->calculateTotal();
+            session(['cart' => $this->cart]);
         }
     }
 
@@ -77,6 +92,12 @@ class Create extends Component
     {
         $product = Product::find($productId);
 
+        if (!$product) {
+            // Jika produk tidak ditemukan, hentikan proses
+            session()->flash('error', 'Produk tidak ditemukan!');
+            return;
+        }
+
         if ($product->stock <= 0) {
             session()->flash('error', 'Stock product is out of stock!');
             return;
@@ -84,7 +105,13 @@ class Create extends Component
 
         if (isset($this->cart[$productId])) {
             // Jika produk sudah ada di cart, tambah kuantitasnya
-            $this->cart[$productId]['quantity']--;
+            if ($this->cart[$productId]['quantity'] > 1) {
+                $this->cart[$productId]['quantity']--;
+                $this->calculateTotal();
+                session(['cart' => $this->cart]);
+            } else {
+                $this->removeFromCart($productId);
+            }
         }
     }
 
@@ -113,6 +140,7 @@ class Create extends Component
      */
     public function processTransaction()
     {
+
         // 1. Validasi: pastikan keranjang tidak kosong
         if (empty($this->cart)) {
             session()->flash('error', 'Empty shopping cart!');
@@ -122,9 +150,11 @@ class Create extends Component
         try {
             // 2. Memulai "Safety Bubble" (Transaksi Database)
             DB::transaction(function () {
+                $user = Auth::user();
+                // dd(auth()->id());
                 // 3. Buat "Kepala" Struk (Simpan ke tabel transactions)
                 $transaction = Transaction::create([
-                    'user_id' => 1,
+                    'user_id' => $user->id,
                     'invoice_number' => 'INV-' . date('Ymd-His'),
                     'total_amount' => $this->total,
                     'status' => 'paid'
@@ -132,8 +162,12 @@ class Create extends Component
 
                 // 4. Loop setiap item di keranjang untuk disimpan dan diupdate
                 foreach ($this->cart as $item) {
-                    $product = Product::find($item['id']);
+                    $product = Product::find($item['product_id']);
 
+                    if (!$product) {
+                        // Hentikan seluruh transaksi jika ada produk yang tidak valid di keranjang
+                        throw new \Exception('Salah satu produk di keranjang tidak ditemukan lagi di database.');
+                    }
                     // Validasi stok di dalam transaksi untuk mencegah race condition
                     if ($product->stock < $item['quantity']) {
                         throw new \Exception('Stok untuk produk ' . $product->name . ' tidak mencukupi.');
@@ -160,6 +194,14 @@ class Create extends Component
         } catch (\Exception $e) {
             session()->flash('error', $e->getMessage());
         }
+    }
+
+    public function clearCart()
+    {
+        $this->cart = [];
+        $this->total = 0;
+        session()->forget('cart');
+        session()->flash('success', 'Keranjang berhasil dikosongkan.');
     }
 
     #[Title('Transaction')]

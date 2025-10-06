@@ -17,6 +17,9 @@ use App\Livewire\Products\Update as ProductUpdate;
 use App\Livewire\Transactions\Index as TransactionIndex;
 use App\Livewire\Transactions\Create as TransactionCreate;
 
+// User
+use App\Livewire\Users\Index as UserIndex;
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -39,4 +42,6 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/transaction/list', TransactionIndex::class)->name('transactions.index');
     Route::get('/transaction/create', TransactionCreate::class)->name('transactions.create');
+
+    Route::get('/user/list', UserIndex::class)->name('users.index');
 });

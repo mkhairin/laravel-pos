@@ -116,7 +116,11 @@
                     </div>
 
                     <div class="process-transactions d-grid">
-                        <button type="button" class="btn btn-info" wire:click="processTransaction"
+                        @php
+                            $userid = auth()->id();
+                        @endphp
+                        <button type="button" class="btn btn-info"
+                            wire:click="processTransaction({{ $userid }})"
                             @if (empty($cart)) disabled @endif><i class="bi bi-cart-fill"></i>
                             Transaction
                             Process</button>

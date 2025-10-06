@@ -47,7 +47,7 @@
                         </div>
                         <div class="form-group">
                             <input type="password" class="form-control form-control-lg" id="exampleInputPassword1"
-                                placeholder="Password">
+                                placeholder="Password" wire:model="password">
                             <small>
                                 <div class="text-danger mt-1">
                                     @error('password')
@@ -56,6 +56,18 @@
                                     @enderror
                                 </div>
                             </small>
+                        </div>
+                        <div class="form-group">
+                            <input type="password" class="form-control form-control-lg" id="exampleInputPassword1"
+                                placeholder="Password Confirmation" wire:model="password_confirmation">
+                            {{-- <small>
+                                <div class="text-danger mt-1">
+                                    @error('password')
+                                        <i class="fa fa-exclamation-circle"></i>
+                                        {{ $message }}
+                                    @enderror
+                                </div>
+                            </small> --}}
                         </div>
                         <div class="mb-4">
                             <div class="form-check">
