@@ -38,7 +38,7 @@
                 <div class="collapse" id="transaction-menu">
                     <ul class="nav flex-column sub-menu">
                         <li class="nav-item"> <a class="nav-link" href="{{ route('transactions.index') }}"
-                                wire:navigate.prevent>Transaction List</a>
+                                wire:navigate>Transaction List</a>
                         </li>
                         <li class="nav-item"> <a class="nav-link" href="{{ route('transactions.create') }}" wire:navigate>Add
                                 Transaction</a>

@@ -2,15 +2,15 @@
     <div class="row">
         <div class="col-md-12 grid-margin">
             <div class="d-flex justify-content-between flex-wrap">
-                <div class="d-flex align-items-end flex-wrap">
+                <div class="d-flex flex-column flex-wrap">
                     <div class="me-md-3 me-xl-5">
-                        <h2>Welcome back,</h2>
-                        <p class="mb-md-0">Your analytics dashboard template.</p>
+                        <h3 class="fw-bold">Welcome back, {{ Auth::user()->name }}</h3>
+                        <p class="mb-md-0">Your analytics dashboard here, see all.</p>
                     </div>
-                    <div class="d-flex">
+                    <div class="d-flex mt-2">
                         <i class="mdi mdi-home text-muted hover-cursor"></i>
                         <p class="text-muted mb-0 hover-cursor">&nbsp;/&nbsp;Dashboard&nbsp;/&nbsp;</p>
-                        <p class="text-primary mb-0 hover-cursor">Analytics</p>
+                        <p class="text-info mb-0 hover-cursor">Analytics</p>
                     </div>
                 </div>
                 <div class="d-flex justify-content-between align-items-end flex-wrap">
@@ -52,7 +52,7 @@
                             <div class="d-flex flex-wrap justify-content-xl-between">
                                 <div
                                     class="d-none d-xl-flex border-md-right flex-grow-1 align-items-center justify-content-left justify-content-md-center px-4 px-md-0 mx-1 mx-md-0 p-3 item">
-                                    <div class="icon-box-secondary me-3">
+                                    <div class="icon-box-info me-3">
                                         <i class="mdi mdi-calendar-heart"></i>
                                     </div>
                                     <div class="d-flex flex-column justify-content-around">
@@ -73,7 +73,7 @@
                                 </div>
                                 <div
                                     class="d-flex border-md-right flex-grow-1 align-items-center justify-content-left justify-content-md-center px-4 px-md-0 mx-1 mx-md-0 p-3 item">
-                                    <div class="icon-box-secondary me-3">
+                                    <div class="icon-box-info me-3">
                                         <i class="mdi mdi-currency-usd"></i>
                                     </div>
                                     <div class="d-flex flex-column justify-content-around">
@@ -83,7 +83,7 @@
                                 </div>
                                 <div
                                     class="d-flex border-md-right flex-grow-1 align-items-center justify-content-left justify-content-md-center px-4 px-md-0 mx-1 mx-md-0 p-3 item">
-                                    <div class="icon-box-secondary me-3">
+                                    <div class="icon-box-info me-3">
                                         <i class="mdi mdi-eye"></i>
                                     </div>
                                     <div class="d-flex flex-column justify-content-around">
@@ -93,7 +93,7 @@
                                 </div>
                                 <div
                                     class="d-flex border-md-right flex-grow-1 align-items-center justify-content-left justify-content-md-center px-4 px-md-0 mx-1 mx-md-0 p-3 item">
-                                    <div class="icon-box-secondary me-3">
+                                    <div class="icon-box-info me-3">
                                         <i class="mdi mdi-download"></i>
                                     </div>
                                     <div class="d-flex flex-column justify-content-around">
@@ -103,7 +103,7 @@
                                 </div>
                                 <div
                                     class="d-flex py-3 border-md-right flex-grow-1 align-items-center justify-content-left justify-content-md-center px-4 px-md-0 mx-1 mx-md-0 p-3 item">
-                                    <div class="icon-box-secondary me-3">
+                                    <div class="icon-box-info me-3">
                                         <i class="mdi mdi-flag"></i>
                                     </div>
                                     <div class="d-flex flex-column justify-content-around">
