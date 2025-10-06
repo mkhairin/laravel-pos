@@ -15,15 +15,18 @@ class Transaction extends Model
     protected $fillable = [
         'user_id',
         'invoice_number',
+        'created',
         'total_amount',
         'status'
     ];
 
-    public function user(): BelongsTo {
+    public function user(): BelongsTo
+    {
         return $this->belongsTo(User::class);
     }
 
-    public function transactionDetails(): HasMany {
+    public function transactionDetails(): HasMany
+    {
         return $this->hasMany(TransactionDetail::class);
     }
 }

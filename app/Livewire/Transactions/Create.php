@@ -156,6 +156,7 @@ class Create extends Component
                 $transaction = Transaction::create([
                     'user_id' => $user->id,
                     'invoice_number' => 'INV-' . date('Ymd-His'),
+                    'created' => date('Y-m-d H:i:s'),
                     'total_amount' => $this->total,
                     'status' => 'paid'
                 ]);
