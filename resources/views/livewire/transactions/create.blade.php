@@ -43,13 +43,20 @@
                                                                 class="bi bi-currency-dollar text-info"></i></small>
                                                         Stock
                                                     </small>
-                                                    <p class="mt-2">{{ $product->stock }}</p>
+                                                    <p class="mt-2">
+                                                        @if ($product->stock > 0)
+                                                            {{ $product->stock }}
+                                                            @else
+                                                            Stock produk habis!
+                                                        @endif
+                                                    </p>
                                                 </div>
                                             </div>
                                             <small class="mt-3">
                                                 <button type="button" class="btn btn-info btn-sm px-4"
                                                     wire:click.prevent="addToCart({{ $product->id }})"><i
-                                                        class="bi bi-cart-fill"></i> Add to cart</button>
+                                                        class="bi bi-cart-fill"></i> Add to
+                                                    cart</button>
                                             </small>
 
                                         </div>
@@ -104,9 +111,11 @@
                                     </div>
                                 </div>
                             @empty
-                                <p class="text-center">
-                                    Cart Empty
-                                </p>
+                                <small>
+                                    <p class="text-center alert alert-light py-2" role="alert">
+                                        <i class="bi bi-exclamation-circle"></i> Cart empty
+                                    </p>
+                                </small>
                         @endforelse
                     </div>
 

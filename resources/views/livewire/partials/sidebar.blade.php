@@ -17,14 +17,13 @@
                 </a>
                 <div class="collapse" id="product-menu">
                     <ul class="nav flex-column sub-menu">
-                        <li class="nav-item"> <a class="nav-link" href="{{ route('products.index') }}"
-                                wire:navigate>Product List</a>
+                        <li class="nav-item"> <a class="nav-link" href="{{ route('products.index') }}" wire:navigate
+                                wire:current="text-info">Product List</a>
                         </li>
-                        <li class="nav-item"> <a class="nav-link" href="{{ route('products.create') }}"
-                                wire:navigate>Add
+                        <li class="nav-item"> <a class="nav-link" href="{{ route('products.create') }}" wire:navigate
+                                wire:current="text-info">Add
                                 Product</a>
                         </li>
-                        <li class="nav-item"> <a class="nav-link" href="#">Update Product</a></li>
                     </ul>
                 </div>
             </li>
@@ -37,11 +36,11 @@
                 </a>
                 <div class="collapse" id="transaction-menu">
                     <ul class="nav flex-column sub-menu">
-                        <li class="nav-item"> <a class="nav-link" href="{{ route('transactions.index') }}"
-                                wire:navigate>Transaction List</a>
+                        <li class="nav-item"> <a class="nav-link" href="{{ route('transactions.index') }}" wire:navigate
+                                wire:current="text-info">Transaction List</a>
                         </li>
                         <li class="nav-item"> <a class="nav-link" href="{{ route('transactions.create') }}"
-                                wire:navigate>Add
+                                wire:navigate wire:current="text-info">Add
                                 Transaction</a>
                         </li>
                     </ul>
@@ -56,9 +55,11 @@
                 </a>
                 <div class="collapse" id="report-menu">
                     <ul class="nav flex-column sub-menu">
-                        <li class="nav-item"> <a class="nav-link" href="#" wire:navigate>Transaction List</a>
+                        <li class="nav-item"> <a class="nav-link" href="#" wire:navigate
+                                wire:current="text-info">Transaction List</a>
                         </li>
-                        <li class="nav-item"> <a class="nav-link" href="#" wire:navigate>Add
+                        <li class="nav-item"> <a class="nav-link" href="#" wire:navigate
+                                wire:current="text-info">Add
                                 Role</a>
                         </li>
                     </ul>
@@ -73,10 +74,12 @@
                 </a>
                 <div class="collapse" id="user-menu">
                     <ul class="nav flex-column sub-menu">
-                        <li class="nav-item"> <a class="nav-link" href="{{ route('users.index') }}" wire:navigate>User
+                        <li class="nav-item"> <a class="nav-link" href="{{ route('users.index') }}" wire:navigate
+                                wire:current="text-info">User
                                 List</a>
                         </li>
-                        <li class="nav-item"> <a class="nav-link" href="#" wire:navigate>Add
+                        <li class="nav-item"> <a class="nav-link" href="#" wire:navigate
+                                wire:current="text-info">Add
                                 Role</a>
                         </li>
                     </ul>
@@ -91,9 +94,11 @@
                 </a>
                 <div class="collapse" id="settings-menu">
                     <ul class="nav flex-column sub-menu">
-                        <li class="nav-item"> <a class="nav-link" href="#" wire:navigate>User List</a>
+                        <li class="nav-item"> <a class="nav-link" href="#" wire:navigate
+                                wire:current="text-info">User List</a>
                         </li>
-                        <li class="nav-item"> <a class="nav-link" href="#" wire:navigate>Add
+                        <li class="nav-item"> <a class="nav-link" href="#" wire:navigate
+                                wire:current="text-info">Add
                                 Role</a>
                         </li>
                     </ul>
